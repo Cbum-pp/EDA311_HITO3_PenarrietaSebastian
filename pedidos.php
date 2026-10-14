@@ -8,7 +8,7 @@ $fecha_edit = "";
 $total_edit = "";
 $modo_edicion = false;
 
-// --- LÓGICA PARA ELIMINAR ---
+
 if (isset($_GET['eliminar'])) {
     $id_eliminar = $_GET['eliminar'];
     try {
@@ -22,7 +22,6 @@ if (isset($_GET['eliminar'])) {
     }
 }
 
-// --- LÓGICA PARA CARGAR DATOS (Preparar Edición) ---
 if (isset($_GET['editar'])) {
     $id_editar = $_GET['editar'];
     $modo_edicion = true;
@@ -39,7 +38,6 @@ if (isset($_GET['editar'])) {
     }
 }
 
-// --- LÓGICA PARA REGISTRAR O ACTUALIZAR ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion'])) {
     $id_cliente = $_POST['id_cliente'];
     $fecha = $_POST['fecha'];
@@ -69,11 +67,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion'])) {
     }
 }
 
-// --- OBTENER CLIENTES PARA EL SELECT ---
 $sql_clientes = "SELECT id_cliente, nombre FROM clientes";
 $lista_clientes = $pdo->query($sql_clientes)->fetchAll();
 
-// --- CONSULTAR PEDIDOS (Usando JOIN) ---
 $sql_select = "SELECT p.id_pedido, p.fecha, p.total, c.nombre AS nombre_cliente 
                FROM pedidos p INNER JOIN clientes c ON p.id_cliente = c.id_cliente";
 $pedidos = $pdo->query($sql_select)->fetchAll();
