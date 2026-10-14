@@ -2,7 +2,6 @@
 require_once 'conexion.php';
 $mensaje = "";
 
-// Variables por defecto para el formulario (vacías para Registrar)
 $id_editar = "";
 $nombre_edit = "";
 $categoria_edit = "";
@@ -10,7 +9,6 @@ $precio_edit = "";
 $stock_edit = "";
 $modo_edicion = false;
 
-// --- 1. LÓGICA PARA ELIMINAR (DELETE) ---
 if (isset($_GET['eliminar'])) {
     $id_eliminar = $_GET['eliminar'];
     try {
@@ -24,7 +22,6 @@ if (isset($_GET['eliminar'])) {
     }
 }
 
-// --- 2. LÓGICA PARA CARGAR DATOS EN EL FORMULARIO (Preparar UPDATE) ---
 if (isset($_GET['editar'])) {
     $id_editar = $_GET['editar'];
     $modo_edicion = true;
@@ -42,7 +39,6 @@ if (isset($_GET['editar'])) {
     }
 }
 
-// --- 3. LÓGICA PARA REGISTRAR O ACTUALIZAR (CREATE / UPDATE) ---
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion'])) {
     $nombre = $_POST['nombre'];
     $categoria = $_POST['categoria'];
@@ -76,7 +72,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion'])) {
     }
 }
 
-// --- 4. LÓGICA PARA CONSULTAR (READ) ---
 $sql_select = "SELECT * FROM productos";
 $stmt_select = $pdo->query($sql_select);
 $productos = $stmt_select->fetchAll();
