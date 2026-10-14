@@ -2,14 +2,14 @@
 require_once 'conexion.php';
 $mensaje = "";
 
-// Variables por defecto para el formulario
+
 $id_editar = "";
 $nombre_edit = "";
 $email_edit = "";
 $edad_edit = "";
 $modo_edicion = false;
 
-// --- LÓGICA PARA ELIMINAR ---
+
 if (isset($_GET['eliminar'])) {
     $id_eliminar = $_GET['eliminar'];
     try {
@@ -23,7 +23,7 @@ if (isset($_GET['eliminar'])) {
     }
 }
 
-// --- LÓGICA PARA CARGAR DATOS (Preparar Edición) ---
+
 if (isset($_GET['editar'])) {
     $id_editar = $_GET['editar'];
     $modo_edicion = true;
@@ -40,7 +40,7 @@ if (isset($_GET['editar'])) {
     }
 }
 
-// --- LÓGICA PARA REGISTRAR O ACTUALIZAR ---
+
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion'])) {
     $nombre = $_POST['nombre'];
     $email = $_POST['email'];
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST['accion'])) {
     }
 }
 
-// --- CONSULTAR TODOS LOS CLIENTES ---
+
 $sql_select = "SELECT * FROM clientes";
 $stmt_select = $pdo->query($sql_select);
 $clientes = $stmt_select->fetchAll();
